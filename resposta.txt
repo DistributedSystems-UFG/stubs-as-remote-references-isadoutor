@@ -1,0 +1,5 @@
+a) O exemplo foi executado localmente, reproduzindo corretamente o cenário em que o client1 cria uma lista, anexa 'Client 1' e envia seu stub ao client2, que o recebe, anexa 'Client 2' e confirma ['Client 1', 'Client 2'], comprovando que ambos operam sobre o mesmo objeto remoto. O mecanismo central é usar o stub como referência remota global: ele guarda apenas host, porta e listID.
+
+b) https://github.com/DistributedSystems-UFG/stubs-as-remote-references-isadoutor.git
+
+c) As mudanças para rodar em três EC2 foram principalmente de configuração: IPs reais em constRPC.py, bind em todas as interfaces em server.py/client.py, liberação de portas nos Security Groups, e substituição do run.py por três scripts independentes, um por máquina. As diferenças reais ficam nas propriedades não funcionais: maior latência de rede, risco de falhas não tratadas pelo código, necessidade de configurar segurança de rede, e maior fragilidade da sincronização baseada em sleep fixo entre processos agora verdadeiramente independentes.
